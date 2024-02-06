@@ -1,0 +1,61 @@
+set scrolloff=5 sidescrolloff=10
+set surround
+set easymotion
+set sneak
+set quickscope
+set incsearch
+set number
+set relativenumber
+set multiple-cursors
+set clipboard+=unnamedplus
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+set wrapscan
+set gdedefault
+set history=10000
+set commentary
+set ideajoin
+
+
+let mapleader = " "
+
+nnoremap fe :action FindInPath<CR>
+nnoremap ff :action SearchEverywhere<CR>
+nnoremap gcc: action CommentByLineComment<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+nnoremap <leader>fc :action ReformatCode<CR>
+nnoremap <leader>r :action Run<CR>
+nnoremap <leader>rc :action ChooseRunConfiguration<CR>
+nnoremap <leader>d :action Debug<CR>
+nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
+nnoremap <leader>e :action GotoFile<CR>
+nnoremap <leader>cl :nohls<return><esc>
+map <leader>f <Plug>(easymotion-s)
+map <leader>s <Plug>(easymotion-f)
+nnoremap sh :split<CR>
+nnoremap sv :vsplit<CR>
+nnoremap H <C-w>h
+nnoremap L <C-w>l
+nnoremap K <C-w>k
+nnoremap J <C-w>j
+nnoremap <C-j> <C-n>
+nnoremap <leader>vv :e ~/.ideavimrc<CR>
+inoremap <C-l> <Esc>gt
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+inoremap <C-h> <Esc>gT
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+vnoremap < <gv
+vnoremap > >gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+vnoremap <A-j> :m '>+1<CR>gv=gv
+xnoremap <A-k> :move '<-2<CR>gv=gv
+xnoremap <A-j> :move '>+1<CR>gv=gv
+nnoremap <S-CR> i<CR><Esc>
+nnoremap <CR> a<CR><Esc>
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
