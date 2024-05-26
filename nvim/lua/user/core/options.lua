@@ -1,5 +1,5 @@
 local options = {
-	background = "dark",
+	background = "light",
 	backup = false,
 	clipboard = "unnamedplus",
 	cmdheight = 2,
