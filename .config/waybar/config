@@ -1,0 +1,151 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 0,
+  "modules-left": [
+    "clock",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "custom/ibus",
+    "custom/updates",
+    "cpu",
+    "memory",
+    "network",
+    "battery",
+    "pulseaudio",
+    "pulseaudio#microphone"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": [],
+    }
+  },
+  "clock": {
+    "format": " {:%I:%M %p  󰃭  %a %Y/%m/%d}",
+    "tooltip": false
+  },
+  "custom/weather": {
+    "tooltip": true,
+    "format": "{} weather",
+    "interval": 30,
+    "exec": "~/.config/waybar/scripts/waybar-wttr.py",
+    "return-type": "json"
+  },
+  "custom/input": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/input-method.sh",
+    "intervar": 1,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/input-method.sh toggle",
+  },
+  "custom/updates": {
+    "format": "󰇚 {}",
+    "interval": 7200,
+    "exec": "i=$(nix-channel --update && nix-env -u --dry-run); echo \"$i\" | grep -c 'to upgrade'; echo \"$i\" | tr '\n' '\r'",
+    "exect-if": "exit 0",
+    "on-click": "kitty -e sudo nixos-rebuild switch --upgrade",
+    "signal": 8
+  },
+  "hyprland/window": {
+    "max-length": 70,
+    "separate-outputs": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": "   {}%"
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "󰻠 {usage:2}%"
+  },
+  "network": {
+    "interval": 1,
+    "interface": "wlp*",
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-wifi": "{icon}",
+    "format-disconnected": "󰤮",
+    "on-click": "kitty -e nmtui",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 10
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󱘖 {capacity}%",
+    "format-disconnected": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󱈏"
+    ],
+    "on-click": "",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "tooltip": false,
+    "format-muted": "󰖁",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "{volume}% 󰍬",
+    "format-source-muted": "󰍭",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+    "scroll-step": 5
+  }
+}
