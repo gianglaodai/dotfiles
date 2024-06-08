@@ -34,6 +34,8 @@ local options = {
 	sidescrolloff = 8,
 	guifont = "ComicShannsMono Nerd Font Mono:h14",
 }
+vim.g.neovide_transparency = 0.8 
+vim.g.transparency = 1
 
 vim.opt.shortmess:append("c")
 

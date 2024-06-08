@@ -7,6 +7,7 @@ local function bind(op, outer_opts)
 end
 
 local nmap = bind("n")
+local imap = bind("i")
 local vmap = bind("v")
 local xmap = bind("x")
 local tmap = bind("t", { silent = true })
@@ -57,7 +58,9 @@ nmap("<leader>a", "<cmd>Alpha<CR>")
 nmap("<leader>cl", "<cmd>noh<CR>")
 
 -- BBype
-nmap("<leader>q", "<cmd>Bdelete!<CR>")
+nmap("<C-w>", "<cmd>Bdelete!<CR>")
+nmap("<C-s>", "<cmd>w<CR>")
+imap("<C-s>", "<ESC><cmd>w<CR>a")
 
 -- Undotree
 nmap("<leader>u", "<cmd>UndotreeToggle<CR>")
@@ -87,8 +90,8 @@ xmap("<A-k>", ":move '<-2<CR>gv-gv")
 
 -- Insert --
 -- Move text up and down
-xmap("<A-j>", "<Esc>:m .+1<CR>==gi")
-xmap("<A-k>", "<Esc>:m .-2<CR>==gi")
+xmap("<A-j>", "<ESC>:m .+1<CR>==gi")
+xmap("<A-k>", "<ESC>:m .-2<CR>==gi")
 
 -- Terminal --
 -- Better terminal navigation
