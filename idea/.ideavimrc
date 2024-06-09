@@ -18,17 +18,20 @@ set history=10000
 set commentary
 set ideajoin
 
+
 let mapleader = " "
 
-nmap <C-c> <Esc>
-imap <C-c> <Esc>
-vmap <C-c> <Esc>
-nnoremap fe :action FindInPath<CR>
-nnoremap ff :action SearchEverywhere<CR>
+nnoremap <leader>fe :action FindInPath<CR>
+nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap gcc: action CommentByLineComment<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
-nnoremap <leader>c :action ReformatCode<CR>
+nnoremap sh :split<CR>
+nnoremap sv :vsplit<CR>
+nnoremap H <C-w>h
+nnoremap L <C-w>l
+
+nnoremap <leader>fc :action ReformatCode<CR>
 nnoremap <leader>r :action Run<CR>
 nnoremap <leader>rc :action ChooseRunConfiguration<CR>
 nnoremap <leader>d :action Debug<CR>
@@ -37,10 +40,14 @@ nnoremap <leader>e :action GotoFile<CR>
 nnoremap <leader>cl :nohls<return><esc>
 map <leader>f <Plug>(easymotion-s)
 map <leader>s <Plug>(easymotion-f)
-nnoremap <C-w>h :split<CR>
-nnoremap <C-w>v :vsplit<CR>
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap gr :action ShowUsages<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap + :action EditorIncreaseFontSize<CR>
+nnoremap - :action EditorDecreaseFontSize<CR>
 nnoremap <C-j> <C-n>
-nnoremap<leader>vv :e ~/.ideavimrc<CR>
+nnoremap <leader>vv :source ~/.ideavimrc<CR>
 inoremap <C-l> <Esc>gt
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 inoremap <C-h> <Esc>gT
@@ -51,6 +58,9 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 vnoremap <A-j> :m '>+1<CR>gv=gv
 xnoremap <A-k> :move '<-2<CR>gv=gv
 xnoremap <A-j> :move '>+1<CR>gv=gv
+nnoremap <leader>q :q<CR>
+nnoremap <CR> i<CR><ESC>
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
+
