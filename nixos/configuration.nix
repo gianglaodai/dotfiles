@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
-let myFileSystems = import ./filesystems.nix;
+let myFileSystems = import /etc/nixos/filesystems.nix;
 in
 {
   imports =
     [ 
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     ];
 
   boot = {
@@ -68,7 +68,12 @@ in
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = true;
+        };
+      };
       desktopManager = {
         gnome.enable = true;
         runXdgAutostartIfNone = true;
@@ -155,6 +160,11 @@ in
         config = "sudo nvim /etc/nixos/configuration.nix";
       };
     };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
     # nushell = {
     #   enable = true;
     #   shellAliases = {
@@ -176,62 +186,29 @@ in
     # };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+      "steam" "steam-original" "steam-run"
+    ];
+  };
   environment = {
     systemPackages = with pkgs; [
-      wget
-      neovim
-      git
-      curl
-      gcc
-      jdk17
-      jdk21
-      kotlin
-      scala_3
-      go
-      rustc
-      cargo
-      nodejs
-      bun
-      python3
-      neofetch
-      neovide
-      xclip
-      kitty
-      waybar
-      dunst
-      libnotify
-      swww
-      rofi-wayland
-      wofi
-      networkmanagerapplet
-      hyprshot
-      ffmpeg
-      ffmpegthumbnailer
-      viewnior
-      pavucontrol
-      starship
-      wl-clipboard
-      wf-recorder
-      playerctl
-      wlogout
-      swaylock-effects
-      papirus-icon-theme
-      zellij
-      cmatrix
-      jetbrains-toolbox
-      teams-for-linux
-      skypeforlinux
-      whatsapp-for-linux
-      slack
-      discord
-      signal-desktop
-      docker_26
-      warp-terminal
+      wget neovim git curl gcc neofetch neovide xclip zellij cmatrix docker_26 warp-terminal
+      microsoft-edge vivaldi brave
+      wayland wayland-protocols wayland-utils
+      kitty waybar dunst libnotify swww rofi-wayland wofi networkmanagerapplet hyprshot
+      ffmpeg ffmpegthumbnailer viewnior pavucontrol starship wl-clipboard wf-recorder
+      playerctl wlogout swaylock-effects papirus-icon-theme
+      jdk17 jdk21 kotlin scala_3 go rustc cargo nodejs bun python3
+      jetbrains-toolbox teams-for-linux skypeforlinux whatsapp-for-linux slack discord signal-desktop
     ]; 
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
+      DEFAULT_BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
+      BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
+      XDG_DEFAULT_BROWSER = "${pkgs.vivaldi}/bin/vivaldi";
     };
     variables = {
       GTK_IM_MODULE="fcitx";

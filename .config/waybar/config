@@ -1,17 +1,18 @@
 {
-  "layer": "top",
-  "position": "top",
+  "layer": "left",
+  "position": "left",
   "mode": "dock",
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
   "height": 0,
   "modules-left": [
-    "clock",
-    "hyprland/workspaces"
+    "clock#year",
+    "clock#date",
+    "clock#time",
   ],
   "modules-center": [
-    "hyprland/window"
+    "hyprland/workspaces"
   ],
   "modules-right": [
     "tray",
@@ -43,6 +44,18 @@
   },
   "clock": {
     "format": " {:%I:%M %p  󰃭  %a %Y/%m/%d}",
+    "tooltip": false
+  },
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "tooltip": false
+  },
+  "clock#year": {
+    "format": "󰃭 {:%Y}",
+    "tooltip": false
+  },
+  "clock#date": {
+    "format": "{:%m/%d}",
     "tooltip": false
   },
   "custom/weather": {
