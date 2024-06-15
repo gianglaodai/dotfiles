@@ -1,0 +1,112 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-weight: bold;
+  min-height: 0;
+  font-size: 22px;
+  font-family: "Patrick Hand";
+}
+window#waybar {
+  background-color: rgba(0, 0, 0, 0);
+  color: #f8f8f2;
+}
+
+#modules-left:hover {
+  background: rgba(30, 30, 46, 0.3);
+}
+
+#workspaces {
+  border-radius: 1.5rem;
+  color: #219ebc;
+}
+
+#workspaces button.active {
+  color: #219ebc;
+}
+
+#workspaces button.focused {
+  color: #ccd5ae;
+  background: #eba0ac;
+  border-radius: 10px;
+}
+
+#workspaces button.urgent {
+  background: #a6e3a1;
+  border-radius: 10px;
+}
+
+#workspaces button.hover {
+  background: #cdd6f4;
+  border-radius: 10px;
+}
+
+tooltip {
+  background: #282a36;
+  border: 1px solid #bd93f9;
+  border-radius: 10px;
+}
+
+#window,
+#workspaces,
+#cpu,
+#memory,
+#clock,
+#cpy,
+#battery,
+#network,
+#tray,
+#pulseaudio,
+#custom-weather,
+#custom-input,
+#custom-updates {
+  padding: 4px 10px;
+  margin: 10px 0px 3px 0px;
+  /* background: rgba(30, 30, 46, 0.3); */
+}
+
+#window {
+  color: #023047;
+  background: rgba(254, 250, 224, 0.55);
+  border-radius: 1.5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+#tray {
+  border-radius: 1.5rem 0rem 0rem 1.5rem;
+}
+
+#custom-updates {
+  color: #ffb703;
+}
+
+#memory {
+  color: #ffb86c;
+}
+
+#clock {
+  color: #8ecae6;
+  border-radius: 1.5rem 0px 0px 1.5rem;
+  margin-left: 0.625rem;
+}
+
+#cpu {
+  color: #fb8500;
+}
+
+#battery {
+  color: #f8f8f2;
+}
+
+#network {
+  color: #f1faee;
+}
+
+#pulseaudio {
+  padding-right: 1rem;
+}
+
+#pulseaudio.microphone {
+  border-radius: 0 1.5rem 1.5rem 0;
+  margin-right: 0.625rem;
+}

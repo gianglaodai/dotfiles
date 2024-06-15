@@ -6,103 +6,212 @@
   font-size: 22px;
   font-family: "Patrick Hand";
 }
+
 window#waybar {
-  background-color: rgba(0, 0, 0, 0);
-  color: #f8f8f2;
+  background-color: rgba(0, 43, 54, 0);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 1);
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-#workspaces {
-  border-radius: 0rem 1.5rem 1.5rem 0rem;
-  color: #219ebc;
+#end-right-module,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#wireplumber,
+#end-left-module,
+#custom-media,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#systray,
+#mpd {
+  padding: 0px 8px;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  border: 0.19em solid rgba(203, 75, 22, 1);
+  background-color: rgba(0, 43, 54, 0.1);
+}
+
+@keyframes blink-workspace {
+  to {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 800;
+  }
+}
+
+#workspaces,
+#window {
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  border: 0.19em solid rgba(41, 238, 223, 1);
+  background-color: rgba(0, 43, 54, 0.7);
+  transition: all 0.4s ease-out;
+}
+
+#workspaces button {
+  border-radius: 10px;
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  transition: all 0.4s ease-out;
 }
 
 #workspaces button.active {
-  color: #219ebc;
-}
-
-#workspaces button.focused {
-  color: #ccd5ae;
-  background: #eba0ac;
-  border-radius: 10px;
+  background-color: rgba(42, 161, 152, 0.4);
+  color: rgba(41, 238, 223, 1);
+  animation-name: blink-workspace;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: 2;
+  animation-direction: alternate;
 }
 
 #workspaces button.urgent {
-  background: #a6e3a1;
-  border-radius: 10px;
+  color: rgba(246, 82, 79, 0.5);
+  font-weight: 800;
+  animation-name: blink-workspace;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#workspaces button.hover {
-  background: #cdd6f4;
-  border-radius: 10px;
+#workspaces button.empty {
+  color: rgba(41, 238, 223, 1);
+  animation-name: blink-workspace;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: 4;
+  animation-direction: alternate;
 }
 
-tooltip {
-  background: #282a36;
-  border: 1px solid #bd93f9;
-  border-radius: 10px;
+#workspaces button.occupied {
+  background-color: rgba(203, 75, 22, 0.7);
 }
 
-#window,
-#workspaces,
-#cpu,
-#memory,
-#clock,
-#cpy,
-#battery,
-#network,
-#tray,
-#pulseaudio,
-#custom-weather,
-#custom-input,
-#custom-updates {
-  padding: 4px 10px;
-  margin: 10px 0px 3px 0px;
-  background: rgba(30, 30, 46, 0.3);
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
 }
 
-#window {
-  color: #023047;
-  background: rgba(254, 250, 224, 0.55);
-  border-radius: 1.5rem;
-  margin-left: 4rem;
-  margin-right: 4rem;
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
 }
 
-#tray {
-  border-radius: 1.5rem 0rem 0rem 1.5rem;
+#end-left-module {
+  border: 0.19em solid rgba(156, 160, 237, 1);
 }
 
-#custom-updates {
-  color: #ffb703;
-}
-
-#memory {
-  color: #ffb86c;
-}
-
-#clock {
-  color: #8ecae6;
-  border-radius: 1.5rem 0px 0px 1.5rem;
-  margin-left: 0.625rem;
-}
-
-#cpu {
-  color: #fb8500;
-}
-
-#battery {
-  color: #f8f8f2;
-}
-
-#network {
-  color: #f1faee;
+#end-right-module {
+  border: 0.19em solid rgba(255, 193, 0, 1);
 }
 
 #pulseaudio {
-  padding-right: 1rem;
+  padding-right: 4px;
 }
 
-#pulseaudio.microphone {
-  border-radius: 0 1.5rem 1.5rem 0;
-  margin-right: 0.625rem;
+#pulseaudio.muted {
+  color: rgba(220, 50, 47, 1);
+}
+
+#custom-media {
+  border: 0.19em solid rgba(46, 204, 113, 1);
+  min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+  border: 0.19em solid rgba(46, 204, 113, 1);
+}
+
+#custom-media.custom-vlc {
+  border: 0.19em solid rgba(255, 160, 0, 1);
+}
+
+#clock {
+  padding: 0px 4px 0px 0px;
+}
+
+#backlight {
+  padding: 0px 4px;
+}
+
+#battery {
+  padding: 0px 8px 0px 4px;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: rgba(137, 206, 0, 1);
+}
+
+@keyframes blink-battery {
+  to {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.warning:not(.charging) {
+  color: rgba(255, 193, 0, 1);
+  animation-name: blink-battery;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+  color: rgba(245, 60, 60, 1);
+  animation-name: blink-battery;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#systray {
+  border: 0.19em solid rgba(46, 204, 113, 1);
+  padding: 0px 4px;
+}
+
+#tray {
+  padding: 0px 8px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: rgba(235, 77, 75, 1);
+}
+
+#power-profiles-daemon {
+  padding-right: 15px;
+}
+
+#power-profiles-daemon.performance {
+  color: rgba(245, 60, 60, 1);
+}
+
+#power-profiles-daemon.balanced {
+  color: rgba(41, 128, 185, 1);
+}
+
+#power-profiles-daemon.power-saver {
+  color: rgba(46, 204, 113, 1);
+}
+
+#custom-power {
+  color: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  border: 0.19em solid rgba(246, 82, 79, 1);
+  background-color: rgba(0, 43, 54, 0.7);
+  padding: 0px 14px;
+  color: rgba(245, 60, 60, 1);
 }

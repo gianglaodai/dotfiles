@@ -1,164 +1,116 @@
-{
-  "layer": "left",
-  "position": "left",
-  "mode": "dock",
-  "exclusive": true,
-  "passthrough": false,
-  "gtk-layer-shell": true,
-  "height": 0,
-  "modules-left": [
-    "clock#year",
-    "clock#date",
-    "clock#time",
-  ],
-  "modules-center": [
-    "hyprland/workspaces"
-  ],
-  "modules-right": [
-    "tray",
-    "custom/ibus",
-    "custom/updates",
-    "cpu",
-    "memory",
-    "network",
-    "battery",
-    "pulseaudio",
-    "pulseaudio#microphone"
-  ],
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "on-click": "activate",
-    "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": [],
-      "6": [],
-      "7": [],
-      "8": [],
-      "9": [],
-      "10": [],
-    }
-  },
-  "clock": {
-    "format": " {:%I:%M %p  󰃭  %a %Y/%m/%d}",
-    "tooltip": false
-  },
-  "clock#time": {
-    "format": "{:%H:%M}",
-    "tooltip": false
-  },
-  "clock#year": {
-    "format": "󰃭 {:%Y}",
-    "tooltip": false
-  },
-  "clock#date": {
-    "format": "{:%m/%d}",
-    "tooltip": false
-  },
-  "custom/weather": {
-    "tooltip": true,
-    "format": "{} weather",
-    "interval": 30,
-    "exec": "~/.config/waybar/scripts/waybar-wttr.py",
-    "return-type": "json"
-  },
-  "custom/input": {
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/input-method.sh",
-    "intervar": 1,
-    "return-type": "json",
-    "on-click": "~/.config/waybar/scripts/input-method.sh toggle",
-  },
-  "custom/updates": {
-    "format": "󰇚 {}",
-    "interval": 7200,
-    "exec": "i=$(nix-channel --update && nix-env -u --dry-run); echo \"$i\" | grep -c 'to upgrade'; echo \"$i\" | tr '\n' '\r'",
-    "exect-if": "exit 0",
-    "on-click": "kitty -e sudo nixos-rebuild switch --upgrade",
-    "signal": 8
-  },
-  "hyprland/window": {
-    "max-length": 70,
-    "separate-outputs": false
-  },
-  "memory": {
-    "interval": 5,
-    "format": "   {}%"
-  },
-  "cpu": {
-    "interval": 5,
-    "format": "󰻠 {usage:2}%"
-  },
-  "network": {
-    "interval": 1,
-    "interface": "wlp*",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
-    "format-wifi": "{icon}",
-    "format-disconnected": "󰤮",
-    "on-click": "kitty -e nmtui",
-    "tooltip": false
-  },
-  "tray": {
-    "icon-size": 20,
-    "spacing": 10
-  },
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
+[
+  {
+    "layer": "bottom",
+    "position": "top",
+    "spacing": 6,
+    "exclusive": true,
+    "reload_style_on_change": true,
+    "fixed-center": true,
+    "modules-left": ["hyprland/workspaces", "group/end-left-module"],
+    "modules-right": ["group/systray", "group/end-right-module", "custom/power"],
+
+    "group/systray": {
+      "orientation": "horizontal",
+      "modules": ["tray", "power-profiles-daemon"],
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󱘖 {capacity}%",
-    "format-disconnected": [
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󱈏"
-    ],
-    "on-click": "",
-    "tooltip": false
+
+    "group/end-left-module": {
+      "orientation": "horizontal",
+      "modules": ["pulseaudio", "backlight"],
+    },
+
+    "group/end-right-module": {
+      "orientation": "horizontal",
+      "modules": ["clock", "battery"],
+    },  
+
+    "custom/media": {
+      "format": "{}",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "return-type": "json",
+      "max-length": 40,
+      "escape": true,
+      "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources folder
+    },
+
+    // Workspaces
+    "hyprland/workspaces": {
+      "active-only": false,
+      "format": "{name}",
+    },
+
+    // Clock
+    "clock": {
+      "format": "{:%a %I:%M %p}",
+      "tooltip-format": "<big>{:%x}</big>\n<tt><small>{calendar}</small></tt>",
+    },
+
+    // Battery
+    "battery": {
+      "states": {
+        "warning": 30,
+        "critical": 15,
+      },
+      "format": "{capacity}% {icon}",
+      "format-full": "{capacity}% {icon}",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      "format-icons": ["", "", "", "", ""],
+    },
+
+    // Power Profiles Daemon
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": "",
+      },
+    },
+
+    // Power Button
+    "custom/power": {
+      "format": "&#x23FB;",
+      "tooltip": false,
+      "on-click": "wlogout",
+    },
+
+    // Audio Information
+    "pulseaudio": {
+      "format": "{volume}% {icon} ",
+      "format-bluetooth": "{volume}% {icon} ",
+      "format-bluetooth-muted": " {icon}  ",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""],
+      },
+      "on-click": "pavucontrol",
+    },
+
+    // Brightness Information
+    "backlight": {
+      "format": "{percent}% {icon}",
+      "format-icons": ["", "", "", "", "", "", "", "", ""],
+    },
+
+    // System Tray
+    "tray": {
+      "icon-size": 24,
+      "spacing": 5,
+    },
   },
-  "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "tooltip": false,
-    "format-muted": "󰖁",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-    "scroll-step": 5,
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
-    }
-  },
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": "{volume}% 󰍬",
-    "format-source-muted": "󰍭",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
-    "scroll-step": 5
-  }
-}
+]
