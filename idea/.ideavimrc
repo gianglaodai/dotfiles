@@ -52,14 +52,18 @@ inoremap <C-l> <Esc>gt
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 inoremap <C-h> <Esc>gT
 inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <C-c> <Esc>
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 vnoremap <A-j> :m '>+1<CR>gv=gv
 xnoremap <A-k> :move '<-2<CR>gv=gv
 xnoremap <A-j> :move '>+1<CR>gv=gv
-nnoremap <leader>q :q<CR>
+nnoremap <C-w> :q<CR>
 nnoremap <CR> i<CR><ESC>
+nnoremap <C-g> :action Generate<CR>
+inoremap <C-g> :action Generate<CR>
+inoremap jk <Esc>
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
