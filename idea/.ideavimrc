@@ -52,7 +52,6 @@ inoremap <C-l> <Esc>gt
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 inoremap <C-h> <Esc>gT
 inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <C-c> <Esc>
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <A-k> :m '<-2<CR>gv=gv

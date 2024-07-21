@@ -15,15 +15,15 @@ return {
     mason_null_ls.setup({
       ensure_installed = {
         "prettier", -- prettier formatter
-        "stylua", -- lua formatter
-        "black", -- python formatter
-        "pylint", -- python linter
-        "eslint_d", -- js linter
+        "stylua",   -- lua formatter
+        "black",    -- python formatter
+        "pylint",   -- python linter
+        --"eslint_d", -- js linter
       },
     })
 
     -- for conciseness
-    local formatting = null_ls.builtins.formatting -- to setup formatters
+    local formatting = null_ls.builtins.formatting   -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
     -- to setup format on save
@@ -39,16 +39,16 @@ return {
         --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
         formatting.prettier.with({
           extra_filetypes = { "svelte" },
-        }), -- js/ts formatter
+        }),                -- js/ts formatter
         formatting.stylua, -- lua formatter
         formatting.isort,
         formatting.black,
         diagnostics.pylint,
-        diagnostics.eslint_d.with({ -- js/ts linter
-          condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-          end,
-        }),
+        -- diagnostics.eslint_d.with({                                         -- js/ts linter
+        --   condition = function(utils)
+        --     return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+        --   end,
+        -- }),
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)
