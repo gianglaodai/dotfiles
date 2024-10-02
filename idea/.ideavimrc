@@ -1,4 +1,5 @@
-set scrolloff=5 sidescrolloff=10
+set scrolloff=5
+sidescrolloff=10
 set surround
 set easymotion
 set sneak
@@ -26,8 +27,8 @@ nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap gcc: action CommentByLineComment<CR>
 nnoremap <C-l> gt
 nnoremap <C-h> gT
-nnoremap sh :split<CR>
-nnoremap sv :vsplit<CR>
+nnoremap sj :split<CR>
+nnoremap sl :vsplit<CR>
 nnoremap H <C-w>h
 nnoremap L <C-w>l
 
@@ -59,7 +60,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 xnoremap <A-k> :move '<-2<CR>gv=gv
 xnoremap <A-j> :move '>+1<CR>gv=gv
 nnoremap <C-w> :q<CR>
-nnoremap <CR> i<CR><ESC>
+nnoremap <CR> i<CR><ESC>w
 nnoremap <C-g> :action Generate<CR>
 inoremap <C-g> :action Generate<CR>
 inoremap jk <Esc>
