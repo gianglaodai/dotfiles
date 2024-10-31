@@ -1,0 +1,81 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "ctrl-shift-f": "workspace::NewSearch",
+      "ctrl-m l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-m h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-m j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-m k": ["workspace::ActivatePaneInDirection", "Up"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-w": "pane::CloseActiveItem",
+      "ctrl-l": "pane::ActivateNextItem",
+      "ctrl-h": "pane::ActivatePrevItem",
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-s l": "pane::SplitRight",
+      "ctrl-s j": "pane::SplitDown",
+      "ctrl-c": "editor::Cancel",
+      "g d": "editor::GoToDefinition",
+      "g d s": "editor::GoToDefinitionSplit",
+      "g D": "editor::GoToDeclaration",
+      "g D s": "editor::GoToDeclarationSplit",
+      "g i": "editor::GoToImplementation",
+      "g i s": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g t s": "editor::GoToTypeDefinitionSplit",
+      "ctrl-e": "workspace::ToggleLeftDock",
+      "ctrl-a": "workspace::ToggleRightDock",
+      "space f f": "file_finder::Toggle",
+      "space f e": "workspace::NewSearch",
+      "space r n": "editor::Rename",
+      "space f c": "editor::Format",
+      "0": "vim::FirstNonWhitespace",
+      "enter": ["workspace::SendKeystrokes", " i enter escape w"]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      ">": "editor::Indent",
+      "<": "editor::Outdent",
+      "d": "editor::Delete",
+      "p": ["editor::Delete", "vim::Paste"]
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-e": "workspace::ToggleLeftDock",
+      "ctrl-a": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Assistant",
+    "bindings": {
+      "ctrl-a": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-t": "workspace::ToggleBottomDock",
+      "ctrl-w": "pane::CloseActiveItem",
+      "ctrl-n": "workspace::NewTerminal",
+      "ctrl-l": "pane::ActivateNextItem",
+      "ctrl-h": "pane::ActivatePrevItem",
+      "ctrl-q": null
+    }
+  }
+]

@@ -1,9 +1,9 @@
 local function bind(op, outer_opts)
-	outer_opts = outer_opts or { noremap = true, silent = true }
-	return function(lhs, rhs, opts)
-		opts = vim.tbl_extend("force", outer_opts, {})
-		vim.keymap.set(op, lhs, rhs, opts)
-	end
+  outer_opts = outer_opts or { noremap = true, silent = true }
+  return function(lhs, rhs, opts)
+    opts = vim.tbl_extend("force", outer_opts, {})
+    vim.keymap.set(op, lhs, rhs, opts)
+  end
 end
 
 local nmap = bind("n")
@@ -20,7 +20,7 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Open explorer
-nmap("<leader>e", "<cmd>NvimTreeToggle<CR>")
+nmap("<C-e>", "<cmd>NvimTreeToggle<CR>")
 
 -- Navigate buffers
 nmap("<C-l>", "<cmd>bnext<CR>")
@@ -48,8 +48,8 @@ nmap("<A-k>", ":m .-2<CR>==")
 
 -- Telescope --
 --nmap("ff", "<cmd>Telescope find_files<CR>")
-nmap("ff", "<cmd>lua require'telescope.builtin'.find_files()<CR>")
-nmap("fe", "<cmd>Telescope live_grep<CR>")
+nmap("<leader>ff", "<cmd>lua require'telescope.builtin'.find_files()<CR>")
+nmap("<leader>fe", "<cmd>Telescope live_grep<CR>")
 
 -- Alpha --
 nmap("<leader>a", "<cmd>Alpha<CR>")

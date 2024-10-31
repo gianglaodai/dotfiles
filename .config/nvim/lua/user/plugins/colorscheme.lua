@@ -29,16 +29,29 @@
 -- 	end,
 -- }
 return {
-	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 9999,
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 9999,
   opts = {
     style = "night",
     light_style = "night",
     transparent = true,
     terminal_colors = true
   },
-	config = function()
-		vim.cmd([[colorscheme tokyonight-night]])
-	end,
+  config = function()
+    vim.cmd([[colorscheme tokyonight-night]])
+  end,
 }
+-- return {
+--   'maxmx03/solarized.nvim',
+--   lazy = false,
+--   priority = 1000,
+--   ---@type solarized.config
+--   opts = {},
+--   config = function(_, opts)
+--     vim.o.termguicolors = true
+--     vim.o.background = 'light'
+--     require('solarized').setup(opts)
+--     vim.cmd.colorscheme 'solarized'
+--   end,
+-- }
