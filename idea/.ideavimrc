@@ -74,4 +74,3 @@ nnoremap <CR> i<CR><ESC>w
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
-
